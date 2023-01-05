@@ -13,6 +13,7 @@
         if (type === 'html') {
           document.write(content);
           return;
+        }
         if (type === 'js') {
           const script = document.createElement('script');
           script.textContent = content;
