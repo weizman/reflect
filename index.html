@@ -9,6 +9,9 @@
     </script>
     <script>
       function apply(content, type) {
+        try {
+          content = atob(content);
+        } catch (e) {}
         type = type || (content.startsWith('<') ? 'html' : 'js');
         if (type === 'html') {
           document.write(content);
