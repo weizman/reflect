@@ -1,0 +1,29 @@
+<html>
+  <head>
+    <script>
+      const queryString = window.location.search;
+      const urlParams = new URLSearchParams(queryString);
+      const content = urlParams.get('content');
+      const delay = urlParams.get('delay');
+      const type = urlParams.get('type');
+    </script>
+    <script>
+      function apply(content, type) {
+        type = type || (content.startsWith('<') ? 'html' : 'js');
+        if (type === 'html') {
+          document.write(content);
+          return;
+        if (type === 'js') {
+          const script = document.createElement('script');
+          script.textContent = content;
+          document.body.append(script);
+          return;
+        }
+        throw new Error('Provided type must be html/js, instead got: "' + type + '"');  
+      }
+    </script>
+  </head>
+  <body>
+    <script> setTimeout(apply, delay || 50, content, type)
+  </body>
+</html>
